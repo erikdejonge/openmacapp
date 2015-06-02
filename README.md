@@ -1,6 +1,6 @@
 # openmacapp
 
-
+```
 Searches and starts an OSX app from the commandline
 
 Usage:
@@ -13,8 +13,12 @@ Options:
 author  : rabshakeh (erik@a8.nl)
 project : devenv
 created : 31-05-15 / 11:08
+```
 
 ##usage
+
+A fragment of the applications name is enough to find it
+
 
 ```bash
 openmacapp word
