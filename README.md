@@ -1,7 +1,7 @@
 # openmacapp
 
 ```
-Searches and starts an OSX app from the commandline
+Searches and starts an OSX app from the commandline, a fragment of the applications name is enough to find it.
 
 Usage:
   openmacapp.py [options] <name>
@@ -15,10 +15,7 @@ project : devenv
 created : 31-05-15 / 11:08
 ```
 
-##usage
-
-A fragment of the applications name is enough to find it
-
+*Example:*
 
 ```bash
 openmacapp word
@@ -34,6 +31,6 @@ Which one? (default: q, quit: q)?
 $: 
 ```
 
-## configuration
+*Configuration:*
 
 The program looks for the file "~/.openmacapp", this file contains the basepaths. If it's not there a default one is written
