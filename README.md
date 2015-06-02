@@ -33,4 +33,4 @@ $:
 
 **Configuration:**
 
-The program looks for the file "~/.openmacapp", this file contains the basepaths. If it's not there a default one is written
+The program looks for the file `"~/.openmacapp"`, this file contains the basepaths. If it's not there a default one is written
