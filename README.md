@@ -1,4 +1,4 @@
-# openmacapp
+#openmacapp
 
 ```
 Searches and starts an OSX app from the commandline, a fragment of the applications name is enough to find it.
@@ -15,7 +15,7 @@ project : devenv
 created : 31-05-15 / 11:08
 ```
 
-*Example:*
+**Example:**
 
 ```bash
 openmacapp word
@@ -31,6 +31,6 @@ Which one? (default: q, quit: q)?
 $: 
 ```
 
-*Configuration:*
+**Configuration:**
 
 The program looks for the file "~/.openmacapp", this file contains the basepaths. If it's not there a default one is written
