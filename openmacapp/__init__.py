@@ -28,6 +28,7 @@ g_basepaths = """
 ~/Applications
 ~/Documents/Applications
 ~/Library/Workflows/Applications
+~/workspace/documentation/cheatsheets
 """
 
 
@@ -52,12 +53,15 @@ def scan_for_subfolders(base):
     """
     base = os.path.expanduser(base)
     folders = [base]
-    listdir = [folder for folder in os.listdir(base) if not folder.strip().lower().endswith(".app")]
+    listdir = [folder for folder in os.listdir(base)]
     for item in listdir:
         itemp = os.path.join(base, item)
 
-        if os.path.isdir(itemp):
-            folders.append(itemp)
+        if os.path.isdir(itemp) and not itemp.strip().startswith(".") and not itemp.strip().endswith(".localized"):
+            # print(itemp)
+
+            if not itemp.strip().lower().endswith(".app"):
+                folders.append(itemp)
 
     return folders
 
@@ -69,10 +73,11 @@ def search_appfolder(filename, searchfolder, verbose=False):
     @type verbose: bool
     @return: None
     """
+    applist = []
+
     if verbose:
         print("\033[37msearch: " + searchfolder + "\033[0m")
 
-    applist = []
     os.chdir(searchfolder)
 
     for app in glob.glob("*.app"):
@@ -108,7 +113,9 @@ def main():
 
     applist = list(set(applist))
 
-    if len(applist) == 1:
+    if len(applist) == 0:
+        print("\033[37m" + arguments.name + " not found\033[0m")
+    elif len(applist) == 1:
         os.system("open '/Applications/" + applist[0] + "'")
     else:
         answer = doinput(description="Which one?", default="q", answers=applist, force=False, returnnum=True)
