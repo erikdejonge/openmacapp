@@ -14,6 +14,7 @@ author  : rabshakeh (erik@a8.nl)
 project : devenv
 created : 31-05-15 / 11:08
 """
+
 import os
 import glob
 
@@ -28,7 +29,6 @@ g_basepaths = """
 ~/Applications
 ~/Documents/Applications
 ~/Library/Workflows/Applications
-~/workspace/documentation/cheatsheets
 """
 
 
@@ -53,15 +53,12 @@ def scan_for_subfolders(base):
     """
     base = os.path.expanduser(base)
     folders = [base]
-    listdir = [folder for folder in os.listdir(base)]
+    listdir = [folder for folder in os.listdir(base) if not folder.strip().lower().endswith(".app")]
     for item in listdir:
         itemp = os.path.join(base, item)
 
-        if os.path.isdir(itemp) and not itemp.strip().startswith(".") and not itemp.strip().endswith(".localized"):
-            # print(itemp)
-
-            if not itemp.strip().lower().endswith(".app"):
-                folders.append(itemp)
+        if os.path.isdir(itemp):
+            folders.append(itemp)
 
     return folders
 
@@ -73,16 +70,15 @@ def search_appfolder(filename, searchfolder, verbose=False):
     @type verbose: bool
     @return: None
     """
-    applist = []
-
     if verbose:
         print("\033[37msearch: " + searchfolder + "\033[0m")
 
+    applist = []
     os.chdir(searchfolder)
 
     for app in glob.glob("*.app"):
         if filename.lower().strip() in app.lower().strip():
-            applist.append(app)
+            applist.append(os.path.join(searchfolder, app))
 
     return applist
 
@@ -116,11 +112,11 @@ def main():
     if len(applist) == 0:
         print("\033[37m" + arguments.name + " not found\033[0m")
     elif len(applist) == 1:
-        os.system("open '/Applications/" + applist[0] + "'")
+        os.system("open '" + applist[0] + "'")
     else:
         answer = doinput(description="Which one?", default="q", answers=applist, force=False, returnnum=True)
-        os.system("open '/Applications/" + applist[answer] + "'")
 
+        os.system("open '" + applist[answer] + "'")
 
 if __name__ == "__main__":
     main()
