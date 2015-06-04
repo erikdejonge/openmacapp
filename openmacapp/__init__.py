@@ -82,7 +82,7 @@ def search_appfolder(filename, searchfolder, verbose=False):
 
     return applist
 
-
+import copy
 def main():
     """
     main
@@ -114,7 +114,15 @@ def main():
     elif len(applist) == 1:
         os.system("open '" + applist[0] + "'")
     else:
+        cnt = 0
+        for i in applist:
+            print(cnt, i)
+            cnt += 1
+
+
+
         answer = doinput(description="Which one?", default="q", answers=applist, force=False, returnnum=True)
+        applist.sort()
 
         os.system("open '" + applist[answer] + "'")
 

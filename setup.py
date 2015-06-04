@@ -9,7 +9,7 @@ created : 02-06-15 / 15:21
 
 from setuptools import setup
 setup(name='openmacapp',
-      version='3',
+      version='4',
       description='Search and start a mac app from the commandline',
       url='https://github.com/erikdejonge/openmacapp',
       author='Erik de Jonge',
