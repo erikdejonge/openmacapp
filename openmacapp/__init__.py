@@ -110,8 +110,9 @@ def main():
     applist = list(set(applist))
 
     if len(applist) == 0:
-        print("\033[37m" + arguments.name + " not found\033[0m")
+        print("\033[33m" + arguments.name + " not found\033[0m")
     elif len(applist) == 1:
+        print("\033[33mopening:", os.path.basename(applist[0]).strip(".app"), "\033[0m")
         os.system("open '" + applist[0] + "'")
     else:
 
