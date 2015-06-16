@@ -9,7 +9,7 @@ created : 02-06-15 / 15:21
 
 from setuptools import setup
 setup(name='openmacapp',
-      version='6',
+      version='7',
       description='Search and start a mac app from the commandline',
       url='https://github.com/erikdejonge/openmacapp',
       author='Erik de Jonge',
@@ -20,7 +20,7 @@ setup(name='openmacapp',
               'openmacapp=openmacapp:main',
           ],
       },
-      packages=['openmacapp'],
+      packages=[b'openmacapp'],
       zip_safe=True,
       install_requires=['arguments', 'consoleprinter'],
       classifiers=[
