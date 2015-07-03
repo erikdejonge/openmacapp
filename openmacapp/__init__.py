@@ -51,9 +51,11 @@ def scan_for_subfolders(base):
     @type base: str
     @return: None
     """
+    if not os.path.exists(base):
+        return []
     base = os.path.expanduser(base)
     folders = [base]
-    listdir = [folder for folder in os.listdir(base) if not folder.strip().lower().endswith(".app")]
+    listdir = [folder for folder in os.listdir(base) if os.path.exists(folder) and not folder.strip().lower().endswith(".app")]
     for item in listdir:
         itemp = os.path.join(base, item)
 
