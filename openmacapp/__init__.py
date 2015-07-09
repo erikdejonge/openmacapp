@@ -25,7 +25,7 @@ g_basepaths = """
 /Applications/Utilities
 /Applications/Microsoft Office 2011/Office/Shared Applications
 /Library/Documentation/Applications
-/System/Library/CoreServices/Applications
+/System/Library/CoreServices
 /usr/local/share/applications
 ~/Applications
 ~/Documents/Applications
