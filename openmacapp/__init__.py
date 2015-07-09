@@ -54,14 +54,16 @@ def scan_for_subfolders(base):
     """
     if not os.path.exists(base):
         return []
+    folders = []
     base = os.path.expanduser(base)
-    folders = [base]
-    listdir = [folder for folder in os.listdir(base) if os.path.exists(folder) and not folder.strip().lower().endswith(".app")]
-    for item in listdir:
-        itemp = os.path.join(base, item)
+    if not base.lower().endswith("app") and not os.path.isfile(base):
+        folders = [base]
+        listdir = [folder for folder in os.listdir(base) if os.path.exists(folder) and os.path.isdir(folder) and not folder.strip().lower().endswith(".app")]
+        for item in listdir:
+            itemp = os.path.join(base, item)
 
-        if os.path.isdir(itemp):
-            folders.append(itemp)
+            if os.path.isdir(itemp):
+                folders.append(itemp)
 
     return folders
 
@@ -85,7 +87,7 @@ def search_appfolder(filename, searchfolder, verbose=False):
 
     return applist
 
-import copy
+
 def main():
     """
     main
@@ -99,6 +101,14 @@ def main():
         open(configfile, "w").write(g_basepaths)
 
     bases = [base for base in open(configfile).read().split("\n") if base]
+    sbases = set()
+    for base in bases:
+        if os.path.exists(base) and not base.lower().endswith(".app") and os.path.isdir(base):
+            for subbase in os.listdir(base):
+                if not subbase.lower().endswith(".app"):
+                    sbases.add(os.path.join(base, subbase))
+    bases.extend(list(sbases))
+
     for base in bases:
         folders.extend(scan_for_subfolders(base))
 
