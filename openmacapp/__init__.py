@@ -22,6 +22,7 @@ from arguments import Arguments
 from consoleprinter import doinput
 g_basepaths = """
 /Applications
+/Applications/Utilities
 /Applications/Microsoft Office 2011/Office/Shared Applications
 /Library/Documentation/Applications
 /System/Library/CoreServices/Applications
