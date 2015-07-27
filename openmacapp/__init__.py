@@ -121,7 +121,7 @@ def main():
         print("--")
 
     applist = list(set(applist))
-
+    applist = sorted(set(applist))
     if len(applist) == 0:
         print("\033[33m" + arguments.name + " not found\033[0m")
     elif len(applist) == 1:
