@@ -14,10 +14,8 @@ author  : rabshakeh (erik@a8.nl)
 project : devenv
 created : 31-05-15 / 11:08
 """
-
 import os
 import glob
-
 from arguments import Arguments
 from consoleprinter import doinput
 g_basepaths = """
@@ -54,8 +52,10 @@ def scan_for_subfolders(base):
     """
     if not os.path.exists(base):
         return []
+
     folders = []
     base = os.path.expanduser(base)
+
     if not base.lower().endswith("app") and not os.path.isfile(base):
         folders = [base]
         listdir = [folder for folder in os.listdir(base) if os.path.exists(folder) and os.path.isdir(folder) and not folder.strip().lower().endswith(".app")]
@@ -102,11 +102,13 @@ def main():
 
     bases = [base for base in open(configfile).read().split("\n") if base]
     sbases = set()
+
     for base in bases:
         if os.path.exists(base) and not base.lower().endswith(".app") and os.path.isdir(base):
             for subbase in os.listdir(base):
                 if not subbase.lower().endswith(".app"):
                     sbases.add(os.path.join(base, subbase))
+
     bases.extend(list(sbases))
 
     for base in bases:
@@ -122,17 +124,17 @@ def main():
 
     applist = list(set(applist))
     applist = sorted(set(applist))
+
     if len(applist) == 0:
         print("\033[33m" + arguments.name + " not found\033[0m")
     elif len(applist) == 1:
         print("\033[33mopening:", os.path.basename(applist[0]).strip(".app"), "\033[0m")
         os.system("open '" + applist[0] + "'")
     else:
-
         answer = doinput(description="Which one?", default="q", answers=applist, force=False, returnnum=True)
         applist.sort()
+        os.system("open '" + applist[answer] +"'")
 
-        os.system("open '" + applist[answer] + "'")
 
 if __name__ == "__main__":
     main()
