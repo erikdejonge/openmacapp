@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 """
-Searches and starts an OSX app from the commandline
+Searches ("~/.openmacapp) and starts an OSX app from the commandline
 
 Usage:
   openmacapp.py [options] <name>
