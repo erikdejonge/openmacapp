@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 """
+
 Searches ("~/.openmacapp) and starts an OSX app from the commandline
 
 Usage:
@@ -16,6 +17,7 @@ created : 31-05-15 / 11:08
 """
 import os
 import glob
+
 from arguments import Arguments
 from consoleprinter import doinput
 g_basepaths = """
@@ -58,7 +60,7 @@ def scan_for_subfolders(base):
 
     if not base.lower().endswith("app") and not os.path.isfile(base):
         folders = [base]
-        listdir = [folder for folder in os.listdir(base) if os.path.exists(folder) and os.path.isdir(folder) and not folder.strip().lower().endswith(".app")]
+        listdir = [folder for folder in os.listdir(base) if os.path.exists(os.path.join(base, folder)) and os.path.isdir(os.path.join(base, folder)) and not folder.strip().lower().endswith(".app")]
         for item in listdir:
             itemp = os.path.join(base, item)
 
@@ -108,6 +110,8 @@ def main():
             for subbase in os.listdir(base):
                 if not subbase.lower().endswith(".app"):
                     sbases.add(os.path.join(base, subbase))
+                else:
+                    sbases.add(base)
 
     bases.extend(list(sbases))
 
@@ -130,10 +134,14 @@ def main():
     elif len(applist) == 1:
         print("\033[33mopening:", os.path.basename(applist[0]).strip(".app"), "\033[0m")
         os.system("open '" + applist[0] + "'")
+
+        # print("open '" + applist[0] +"'")
     else:
         answer = doinput(description="Which one?", default="q", answers=applist, force=False, returnnum=True)
         applist.sort()
-        os.system("open '" + applist[answer] +"'")
+
+        # print("open '" + applist[answer] +"'")
+        os.system("open '" + applist[answer] + "'")
 
 
 if __name__ == "__main__":
