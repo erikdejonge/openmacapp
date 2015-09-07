@@ -17,9 +17,10 @@ created : 31-05-15 / 11:08
 """
 import os
 import glob
+import copy
 
 from arguments import Arguments
-from consoleprinter import doinput
+from consoleprinter import doinput, console
 g_basepaths = """
 /Applications
 /Applications/Utilities
@@ -137,10 +138,12 @@ def main():
 
         # print("open '" + applist[0] +"'")
     else:
-        answer = doinput(description="Which one?", default="q", answers=applist, force=False, returnnum=True)
-        applist.sort()
+        answer = ""
+        applistorg = copy.deepcopy(applist)
 
-        # print("open '" + applist[answer] +"'")
+        answer = doinput(description="Which one?", default="q", theanswers=applist, force=False, returnnum=True)
+
+        applist.sort()
         os.system("open '" + applist[answer] + "'")
 
 
