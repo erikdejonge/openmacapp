@@ -144,7 +144,7 @@ def main():
         answer = doinput(description="Which one?", default="q", theanswers=applist, force=False, returnnum=True)
 
         applist.sort()
-        os.system("open '" + applist[answer] + "'")
+        os.system("open \"" + applist[answer].replace('"', '\"') + "\"")
 
 
 if __name__ == "__main__":
