@@ -127,8 +127,9 @@ def main():
     if arguments.verbose:
         print("--")
 
+
     applist = list(set(applist))
-    applist = sorted(set(applist))
+
 
     if len(applist) == 0:
         print("\033[33m" + arguments.name + " not found\033[0m")
@@ -141,10 +142,9 @@ def main():
         answer = ""
         applistorg = copy.deepcopy(applist)
 
-        answer = doinput(description="Which one?", default="q", theanswers=applist, force=False, returnnum=True)
+        answer, display_answers = doinput(description="Which one?", default="q", theanswers=applist, force=False, returnnum=True)
 
-        applist.sort()
-        os.system("open \"" + applist[answer].replace('"', '\"') + "\"")
+        os.system("open \"" + display_answers[answer].replace('"', '\"') + "\"")
 
 
 if __name__ == "__main__":
