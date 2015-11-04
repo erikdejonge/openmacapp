@@ -134,7 +134,7 @@ def main():
         print("\033[33m" + arguments.name + " not found\033[0m")
     elif len(applist) == 1:
         print("\033[33mopening:", os.path.basename(applist[0]).strip(".app"), "\033[0m")
-        os.system("open '" + applist[0] + "'")
+        os.system("open -F '" + applist[0] + "'")
 
 
         # print("open '" + applist[0] +"'")
@@ -143,7 +143,7 @@ def main():
         applistorg = copy.deepcopy(applist)
         print(applist)
         answer, display_answers = doinput(description="Which one?", default="q", theanswers=applist, force=False, returnnum=True)
-        os.system("open \"" + display_answers[answer].replace('"', '\"') + "\"")
+        os.system("open -F \"" + display_answers[answer].replace('"', '\"') + "\"")
 
 
 if __name__ == "__main__":
