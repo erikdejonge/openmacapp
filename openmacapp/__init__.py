@@ -141,7 +141,6 @@ def main():
     else:
         answer = ""
         applistorg = copy.deepcopy(applist)
-        print(applist)
         answer, display_answers = doinput(description="Which one?", default="q", theanswers=applist, force=False, returnnum=True)
         os.system("open -F \"" + display_answers[answer].replace('"', '\"') + "\"")
 
