@@ -2,6 +2,7 @@
 # coding=utf-8
 """
 
+
 Searches ("~/.openmacapp) and starts an OSX app from the commandline
 
 Usage:
