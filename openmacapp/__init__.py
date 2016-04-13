@@ -86,8 +86,9 @@ def search_appfolder(filename, searchfolder, verbose=False):
     os.chdir(searchfolder)
 
     for app in glob.glob("*.app"):
-
+        #print(app)
         if filename.lower().strip() in app.lower().strip():
+            #print("--------------", app)
             applist.append(os.path.join(searchfolder, app))
 
     return applist
