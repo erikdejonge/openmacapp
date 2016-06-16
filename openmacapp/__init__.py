@@ -32,6 +32,7 @@ g_basepaths = """
 ~/Applications
 ~/Documents/Applications
 ~/Library/Workflows/Applications
+/System/Library/CoreServices
 """
 
 
