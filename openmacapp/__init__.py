@@ -89,7 +89,7 @@ def search_appfolder(filename, searchfolder, verbose=False):
     for app in glob.glob("*.app"):
         #print(app)
         if filename.lower().strip() in app.lower().strip():
-            #print("--------------", app)
+            #print("--------------", app, searchfolder)
             applist.append(os.path.join(searchfolder, app))
 
     return applist
@@ -115,8 +115,10 @@ def main():
         if os.path.exists(base) and not base.lower().endswith(".app") and os.path.isdir(base):
             for subbase in os.listdir(base):
                 if not subbase.lower().endswith(".app"):
+
                     sbases.add(os.path.join(base, subbase))
                 else:
+
                     sbases.add(base)
 
     bases.extend(list(sbases))
@@ -128,6 +130,7 @@ def main():
     folders = sorted(set(folders))
 
     for folder in folders:
+        #print(folder)
         applist.extend(search_appfolder(arguments.name, folder, arguments.verbose))
 
     if arguments.verbose:
