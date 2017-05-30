@@ -2,7 +2,6 @@
 # coding=utf-8
 """
 
-
 Searches ("~/.openmacapp) and starts an OSX app from the commandline
 
 Usage:
@@ -87,9 +86,11 @@ def search_appfolder(filename, searchfolder, verbose=False):
     os.chdir(searchfolder)
 
     for app in glob.glob("*.app"):
-        #print(app)
+
+        # print(app)
+
         if filename.lower().strip() in app.lower().strip():
-            #print("--------------", app, searchfolder)
+            # print("--------------", app, searchfolder)
             applist.append(os.path.join(searchfolder, app))
 
     return applist
@@ -111,26 +112,21 @@ def main():
     sbases = set()
 
     for base in bases:
-
         if os.path.exists(base) and not base.lower().endswith(".app") and os.path.isdir(base):
             for subbase in os.listdir(base):
                 if not subbase.lower().endswith(".app"):
-
                     sbases.add(os.path.join(base, subbase))
                 else:
-
                     sbases.add(base)
 
     bases.extend(list(sbases))
 
     for base in bases:
-
         folders.extend(scan_for_subfolders(base))
 
     folders = sorted(set(folders))
 
     for folder in folders:
-        #print(folder)
         applist.extend(search_appfolder(arguments.name, folder, arguments.verbose))
 
     if arguments.verbose:
@@ -142,11 +138,8 @@ def main():
     if len(applist) == 0:
         print("\033[33m" + arguments.name + " not found\033[0m")
     elif len(applist) == 1:
-        print("\033[33mopening:", os.path.basename(applist[0]).strip(".app"), "\033[0m")
+        print("\033[33mopening:", applist[0], "\033[0m")
         os.system("open -F '" + applist[0] + "'")
-
-
-        # print("open '" + applist[0] +"'")
     else:
         answer = ""
         applistorg = copy.deepcopy(applist)
